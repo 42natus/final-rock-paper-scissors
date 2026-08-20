@@ -8,4 +8,9 @@ function getComputerChoice() {
     return 'Scissors';
 }
 
-console.log(getComputerChoice());
+function getHumanChoice() {
+    const move = prompt('Please enter your move (Rock/Paper/Scissors):', 'Rock');
+    return (move === null || move === '') ? 'rock' : move.toLowerCase();
+}
+
+console.log(getHumanChoice());
