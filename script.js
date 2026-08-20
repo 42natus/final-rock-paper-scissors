@@ -4,17 +4,33 @@ let humanScore = 0;
 function getComputerChoice() {
     const move = Math.floor(Math.random() * 3);
     if (move === 0) {
-        return 'Rock';
+        return 'rock';
     } else if (move === 1) {
-        return 'Paper';
+        return 'paper';
     }
-    return 'Scissors';
+    return 'scissors';
 }
 
 function getHumanChoice() {
-    const move = prompt('Please enter your move (Rock/Paper/Scissors):', 'Rock');
+    const move = prompt('Please enter your move (rock/paper/scissors):', 'rock');
     return (move === null || move === '') ? 'rock' : move.toLowerCase();
 }
 
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice === computerChoice) {
+        console.log('It\'s a tie!');
+    } else if ((humanChoice === 'rock' && computerChoice === 'scissors') 
+    || (humanChoice === 'paper' && computerChoice === 'rock') 
+    || (humanChoice === 'scissors' && computerChoice === 'paper')) {
+        console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
+        humanScore++;
+    } else { // computer wins in any other scenario (assuming valid input sha)
+        console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
+        computerScore++;
+    }
+}
 
-console.log(getHumanChoice());
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
