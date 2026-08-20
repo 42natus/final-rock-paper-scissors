@@ -39,13 +39,12 @@ function playGame() {
 
     console.log(`Human: ${humanScore}\nComputer: ${computerScore}`)
     
-    if (humanScore > computerScore) {
-        console.log('Winner: You');
-    } else if (computerScore > humanScore) {
-        console.log('Winner: Computer');
-    } else {
-        console.log('The game ended in a tie.');
-    }
+    const result = (humanScore === computerScore) ? 'The game ended in a tie.' :
+        (humanScore > computerScore) ? 'Winner: You' : 
+        'Winner: Computer';
+
+    console.log(result);
+    alert(result);
 }
 
 playGame();
