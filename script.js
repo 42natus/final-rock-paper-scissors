@@ -30,7 +30,22 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+function playGame() {
+    for (let i = 0; i < 5; i++) {
+        let humanSelection = getHumanChoice();
+        let computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    }
 
-playRound(humanSelection, computerSelection);
+    console.log(`Human: ${humanScore}\nComputer: ${computerScore}`)
+    
+    if (humanScore > computerScore) {
+        console.log('Winner: You');
+    } else if (computerScore > humanScore) {
+        console.log('Winner: Computer');
+    } else {
+        console.log('The game ended in a tie.');
+    }
+}
+
+playGame();
