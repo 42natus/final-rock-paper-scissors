@@ -17,17 +17,20 @@ function getComputerChoice() {
 // }
 
 function playRound(humanChoice, computerChoice) {
+    const result = document.createElement("p");
     if (humanChoice === computerChoice) {
-        console.log('It\'s a tie!');
+        gameResults.textContent = "It's a tie!"
+        return;
     } else if ((humanChoice === 'rock' && computerChoice === 'scissors') 
     || (humanChoice === 'paper' && computerChoice === 'rock') 
     || (humanChoice === 'scissors' && computerChoice === 'paper')) {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
         humanScore++;
-    } else { // computer wins in any other scenario (assuming valid input sha)
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
-        computerScore++;
+        gameResults.textContent = `You win! ${humanChoice} beats ${computerChoice}.`;
+        return;
     }
+    // computer wins in any other scenario (assuming valid input sha)
+    computerScore++;
+    gameResults.textContent = `You lose! ${computerChoice} beats ${humanChoice}.`;
 }
 
 const choices = document.querySelector(".choices");
@@ -42,6 +45,8 @@ choices.addEventListener("click", (event) => {
             break;
     }
 });
+
+const gameResults = document.querySelector(".game-results");
 
 // function playGame() {
 //     for (let i = 0; i < 5; i++) {
