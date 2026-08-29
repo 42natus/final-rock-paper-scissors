@@ -1,6 +1,9 @@
 let computerScore = 0;
 let humanScore = 0;
 
+const gameResults = document.querySelector(".game-results");
+const runningScore = document.querySelector(".running-score");
+
 function getComputerChoice() {
     const move = Math.floor(Math.random() * 3);
     if (move === 0) {
@@ -42,11 +45,17 @@ choices.addEventListener("click", (event) => {
         case 'paper':
         case 'scissors':
             playRound(target.id, getComputerChoice());
+            displayRunningScore(humanScore, computerScore);
             break;
     }
 });
 
-const gameResults = document.querySelector(".game-results");
+function displayRunningScore(humanScore, computerScore) {
+    const divOne = document.querySelector(".human-score");
+    const divTwo = document.querySelector(".computer-score");
+    divOne.textContent = `You: ${humanScore}`;
+    divTwo.textContent = `Computer: ${computerScore}`;
+}
 
 // function playGame() {
 //     for (let i = 0; i < 5; i++) {
