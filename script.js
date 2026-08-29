@@ -11,10 +11,10 @@ function getComputerChoice() {
     return 'scissors';
 }
 
-function getHumanChoice() {
-    const move = prompt('Please enter your move (rock/paper/scissors):', 'rock');
-    return (move === null || move === '') ? 'rock' : move.toLowerCase();
-}
+// function getHumanChoice() {
+//     const move = prompt('Please enter your move (rock/paper/scissors):', 'rock');
+//     return (move === null || move === '') ? 'rock' : move.toLowerCase();
+// }
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
@@ -29,6 +29,19 @@ function playRound(humanChoice, computerChoice) {
         computerScore++;
     }
 }
+
+const choices = document.querySelector(".choices");
+choices.addEventListener("click", (event) => {
+    const target = event.target;
+
+    switch (target.id) {
+        case 'rock':
+        case 'paper':
+        case 'scissors':
+            playRound(target.id, getComputerChoice());
+            break;
+    }
+});
 
 // function playGame() {
 //     for (let i = 0; i < 5; i++) {
