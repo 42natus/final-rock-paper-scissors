@@ -65,12 +65,12 @@ function checkGameOver(humanScore, computerScore) {
 
     let player;
     if (humanScore === 5) {
-        alert("You won!!!");
+        alert("Today's your lucky day...");
         winner.textContent = "You won!!!";
         player = "You";
     } else if (computerScore === 5) {
-        alert("The computer won. Better luck next time...");
-        winner.textContent = "The computer won. Better luck next time...";
+        alert("Better luck next time...");
+        winner.textContent = "The computer won.";
         player = "Computer";
     }
 
