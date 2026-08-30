@@ -56,8 +56,6 @@ function displayScore(humanScore, computerScore) {
     divTwo.textContent = `Computer: ${computerScore}`;
 }
 
-const winner = document.querySelector(".winner");
-
 function checkGameOver(humanScore, computerScore) {
     if (humanScore !== 5 && computerScore !== 5) {
         return;
@@ -66,11 +64,11 @@ function checkGameOver(humanScore, computerScore) {
     let player;
     if (humanScore === 5) {
         alert("Today's your lucky day...");
-        winner.textContent = "You won!!!";
+        gameResults.textContent = "You won!!!";
         player = "You";
     } else if (computerScore === 5) {
         alert("Better luck next time...");
-        winner.textContent = "The computer won.";
+        gameResults.textContent = "The computer won.";
         player = "Computer";
     }
 
@@ -79,19 +77,20 @@ function checkGameOver(humanScore, computerScore) {
         detail: {winner: player}
     });
 
-    winner.dispatchEvent(event);
+    gameResults.dispatchEvent(event);
 }
 
 // listen for custom winner event
-winner.addEventListener("winnerfound", gameOver);
+gameResults.addEventListener("winnerfound", gameOver);
 
+const runningScore = document.querySelector(".running-score");
 const resetButton = document.createElement("button");
 resetButton.textContent = "Play Again";
 
 resetButton.addEventListener("click", resetGame);
 
 function gameOver() {
-    winner.append(resetButton);
+    runningScore.append(resetButton);
     resetButton.setAttribute("style", "display: block;");
     
     // stop game play
@@ -103,7 +102,6 @@ function resetGame() {
     gameResults.textContent = "";
     divOne.textContent = "";
     divTwo.textContent = "";
-    winner.textContent = "";
     humanScore = 0;
     computerScore = 0;
     resetButton.setAttribute("style", "display: none;");
