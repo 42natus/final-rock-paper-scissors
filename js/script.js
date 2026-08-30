@@ -91,7 +91,7 @@ const runningScore = document.querySelector(".running-score");
 reset.addEventListener("click", resetGame);
 
 function gameOver() {
-    reset.setAttribute("style", "display: inline-block;");
+    reset.setAttribute("style", "display: block;");
     
     // stop game play
     const buttons = document.querySelectorAll(".choice");

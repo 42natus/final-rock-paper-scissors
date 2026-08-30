@@ -1,0 +1,54 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    width: 50%;
+    margin: 32px auto;
+    padding: 8px;
+    border: 3px solid gray;
+}
+
+.container {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.container .running-score {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 16px 32px;
+    text-transform: uppercase;
+}
+
+.container .game-results {
+    width: 90%;
+    margin: auto;
+    border: 2px solid gray;
+    padding: 64px 8px;
+    text-align: center;
+}
+
+.container .choices {
+    display: flex;
+    justify-content: space-around;
+    gap: 8px;
+    padding: 16px 32px;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 12px 48px;
+}
+button.reset {
+    width: 35%;
+    margin: 32px auto 16px;
+    padding: 16px 32px;
+}
