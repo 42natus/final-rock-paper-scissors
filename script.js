@@ -90,7 +90,7 @@ function gameOver() {
     winner.append(resetButton);
     resetButton.setAttribute("style", "display: block;");
     
-    const buttons = document.querySelectorAll(".button");
+    const buttons = document.querySelectorAll(".choice");
     buttons.forEach((button) => button.disabled = true);
 }
 
@@ -107,7 +107,7 @@ function resetGame() {
     computerScore = 0;
     resetButton.setAttribute("style", "display: none;");
 
-    const buttons = document.querySelectorAll(".button");
+    const buttons = document.querySelectorAll(".choice");
     buttons.forEach((button) => button.disabled = false);
 }
 
