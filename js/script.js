@@ -51,12 +51,12 @@ function playRound(humanChoice, computerChoice) {
     gameResults.textContent = `You lose! ${computerChoice} beats ${humanChoice}.`;
 }
 
-const divOne = document.querySelector(".human-score");
-const divTwo = document.querySelector(".computer-score");
+const playerOneScore = document.querySelector(".human-score");
+const playerTwoScore = document.querySelector(".computer-score");
 
 function displayScore(humanScore, computerScore) {
-    divOne.textContent = `You: ${humanScore}`;
-    divTwo.textContent = `Computer: ${computerScore}`;
+    playerOneScore.textContent = `You: ${humanScore}`;
+    playerTwoScore.textContent = `Computer: ${computerScore}`;
 }
 
 function checkGameOver(humanScore, computerScore) {
@@ -100,8 +100,8 @@ function gameOver() {
 
 function resetGame() {
     gameResults.textContent = "";
-    divOne.textContent = "";
-    divTwo.textContent = "";
+    playerOneScore.textContent = "You: _";
+    playerTwoScore.textContent = "Computer: _";
     humanScore = 0;
     computerScore = 0;
     reset.setAttribute("style", "display: none;");
