@@ -1,6 +1,9 @@
 let computerScore = 0;
 let humanScore = 0;
 
+const reset = document.querySelector(".reset");
+reset.setAttribute("style", "display: none;");
+
 const choices = document.querySelector(".choices");
 choices.addEventListener("click", playGame);
 
@@ -84,14 +87,11 @@ function checkGameOver(humanScore, computerScore) {
 gameResults.addEventListener("winnerfound", gameOver);
 
 const runningScore = document.querySelector(".running-score");
-const resetButton = document.createElement("button");
-resetButton.textContent = "Play Again";
 
-resetButton.addEventListener("click", resetGame);
+reset.addEventListener("click", resetGame);
 
 function gameOver() {
-    runningScore.append(resetButton);
-    resetButton.setAttribute("style", "display: block;");
+    reset.setAttribute("style", "display: inline-block;");
     
     // stop game play
     const buttons = document.querySelectorAll(".choice");
@@ -104,7 +104,7 @@ function resetGame() {
     divTwo.textContent = "";
     humanScore = 0;
     computerScore = 0;
-    resetButton.setAttribute("style", "display: none;");
+    reset.setAttribute("style", "display: none;");
 
     const buttons = document.querySelectorAll(".choice");
     buttons.forEach((button) => button.disabled = false);
