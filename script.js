@@ -3,6 +3,9 @@ let humanScore = 0;
 
 const gameResults = document.querySelector(".game-results");
 const runningScore = document.querySelector(".running-score");
+const divOne = document.querySelector(".human-score");
+const divTwo = document.querySelector(".computer-score");
+const winner = document.querySelector(".winner");
 
 function getComputerChoice() {
     const move = Math.floor(Math.random() * 3);
@@ -46,15 +49,66 @@ choices.addEventListener("click", (event) => {
         case 'scissors':
             playRound(target.id, getComputerChoice());
             displayRunningScore(humanScore, computerScore);
+            checkWinner(humanScore, computerScore);
             break;
     }
 });
 
 function displayRunningScore(humanScore, computerScore) {
-    const divOne = document.querySelector(".human-score");
-    const divTwo = document.querySelector(".computer-score");
     divOne.textContent = `You: ${humanScore}`;
     divTwo.textContent = `Computer: ${computerScore}`;
+}
+
+function checkWinner(humanScore, computerScore) {
+    if (humanScore !== 5 && computerScore !== 5) {
+        return;
+    }
+
+    let player;
+    if (humanScore === 5) {
+        alert("You won!!!");
+        winner.textContent = "You won!!!";
+        player = "You";
+    } else if (computerScore === 5) {
+        alert("The computer won. Better luck next time...");
+        winner.textContent = "The computer won. Better luck next time...";
+        player = "Computer";
+    }
+
+    // use custom event to announce winner
+    let event = new CustomEvent("winnerfound", {
+        detail: {winner: player}
+    });
+
+    winner.dispatchEvent(event);
+}
+
+// listen for whether there's a winner
+winner.addEventListener("winnerfound", gameOver);
+
+function gameOver() {
+    winner.append(resetButton);
+    resetButton.setAttribute("style", "display: block;");
+    
+    const buttons = document.querySelectorAll(".button");
+    buttons.forEach((button) => button.disabled = true);
+}
+
+const resetButton = document.createElement("button");
+resetButton.textContent = "Play Again";
+resetButton.addEventListener("click", resetGame);
+
+function resetGame() {
+    gameResults.textContent = "";
+    divOne.textContent = "";
+    divTwo.textContent = "";
+    winner.textContent = "";
+    humanScore = 0;
+    computerScore = 0;
+    resetButton.setAttribute("style", "display: none;");
+
+    const buttons = document.querySelectorAll(".button");
+    buttons.forEach((button) => button.disabled = false);
 }
 
 // function playGame() {
