@@ -8,18 +8,20 @@
     <script type="module" src="./js/script.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="choices">
-            <button id="rock" class="choice">Rock</button>
-            <button id="paper" class="choice">Paper</button>
-            <button id="scissors" class="choice">Scissors</button>
+    <div class="wrapper">
+        <div class="container">
+            <div class="choices">
+                <button id="rock" class="choice">Rock</button>
+                <button id="paper" class="choice">Paper</button>
+                <button id="scissors" class="choice">Scissors</button>
+            </div>
+            <div class="game-results"></div>
+            <div class="running-score">
+                <div class="human-score">You:- _</div>
+                <div class="computer-score">Computer:- _</div>
+            </div>
         </div>
-        <div class="game-results"></div>
-        <div class="running-score">
-            <div class="human-score">You: _</div>
-            <div class="computer-score">Computer: _</div>
-        </div>
+        <button class="reset">Play Again</button>
     </div>
-    <button class="reset">Play Again</button>
 </body>
 </html>

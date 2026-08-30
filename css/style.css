@@ -2,6 +2,8 @@
     font-family: 'Courier New', Courier, monospace;
     text-transform: uppercase;
     font-size: 16px;
+    font-weight: 700;
+
 }
 
 html {
@@ -15,48 +17,73 @@ html {
 }
 
 body {
-    width: 50%;
+    padding: 32px 8px;
+    background-color: #FAF8F5;
+}
+
+.wrapper {
+    width: 35%;
     margin: 32px auto;
     padding: 8px;
-    border: 3px solid gray;
+    border: 2px solid #616a86;
+    border-radius: 32px;
+    background-color: #B3C5FF;
 }
 
 .container {
     display: flex;
     flex-direction: column-reverse;
+    align-items: center;
 }
 
 .container .running-score {
+    align-self: stretch;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     padding: 16px 32px;
-    font-weight: 700;
+    color: #1E293B;
 }
 
 .container .game-results {
     width: 90%;
     margin: auto;
-    border: 2px solid gray;
+    border: 2px solid #7c88af;
+    border-radius: 18px;
     padding: 64px 8px;
     text-align: center;
-    font-size: 32px;
+    font-size: 24px;
+    background-color: #D1FAF0;
+    color: #0F5144;
 }
 
 .container .choices {
     display: flex;
     justify-content: space-around;
-    gap: 8px;
+    gap: 18px;
     padding: 16px 32px;
     flex-wrap: wrap;
-}
-
-button.reset {
-    width: 35%;
-    margin: 32px auto 16px;
-    padding: 16px 32px;
+    width: 90%;
 }
 
 button {
-    padding: 12px 48px;
+    width: 150px;
+    padding: 12px 8px;
+    text-align: center;
+    border-radius: 18px;
+    background-color: #FDE68A;
+    color: #451A03;
+    flex: 1 0 auto;
+}
+
+button:disabled {
+    background-color: #e0d6af;
+    color: #816d62;
+}
+
+button.reset {
+    width: 180px;
+    margin: 32px auto 16px;
+    background-color: #FCA5A5;
+    color: #7F1D1D;
 }
