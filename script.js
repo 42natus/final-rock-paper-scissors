@@ -1,35 +1,44 @@
 let computerScore = 0;
 let humanScore = 0;
 
-const gameResults = document.querySelector(".game-results");
-const runningScore = document.querySelector(".running-score");
-const divOne = document.querySelector(".human-score");
-const divTwo = document.querySelector(".computer-score");
-const winner = document.querySelector(".winner");
+const choices = document.querySelector(".choices");
+choices.addEventListener("click", playGame);
+
+// entry point for game
+function playGame(event) {
+    const target = event.target;
+
+    switch (target.id) {
+        case "rock":
+        case "paper":
+        case "scissors":
+            playRound(target.id, getComputerChoice());
+            displayScore(humanScore, computerScore);
+            checkGameOver(humanScore, computerScore);
+            break;
+    }
+}
 
 function getComputerChoice() {
     const move = Math.floor(Math.random() * 3);
     if (move === 0) {
-        return 'rock';
+        return "rock";
     } else if (move === 1) {
-        return 'paper';
+        return "paper";
     }
-    return 'scissors';
+    return "scissors";
 }
 
-// function getHumanChoice() {
-//     const move = prompt('Please enter your move (rock/paper/scissors):', 'rock');
-//     return (move === null || move === '') ? 'rock' : move.toLowerCase();
-// }
+const gameResults = document.querySelector(".game-results");
 
 function playRound(humanChoice, computerChoice) {
     const result = document.createElement("p");
     if (humanChoice === computerChoice) {
         gameResults.textContent = "It's a tie!"
         return;
-    } else if ((humanChoice === 'rock' && computerChoice === 'scissors') 
-    || (humanChoice === 'paper' && computerChoice === 'rock') 
-    || (humanChoice === 'scissors' && computerChoice === 'paper')) {
+    } else if ((humanChoice === "rock" && computerChoice === "scissors") 
+    || (humanChoice === "paper" && computerChoice === "rock") 
+    || (humanChoice === "scissors" && computerChoice === "paper")) {
         humanScore++;
         gameResults.textContent = `You win! ${humanChoice} beats ${computerChoice}.`;
         return;
@@ -39,27 +48,17 @@ function playRound(humanChoice, computerChoice) {
     gameResults.textContent = `You lose! ${computerChoice} beats ${humanChoice}.`;
 }
 
-const choices = document.querySelector(".choices");
-choices.addEventListener("click", (event) => {
-    const target = event.target;
+const divOne = document.querySelector(".human-score");
+const divTwo = document.querySelector(".computer-score");
 
-    switch (target.id) {
-        case 'rock':
-        case 'paper':
-        case 'scissors':
-            playRound(target.id, getComputerChoice());
-            displayRunningScore(humanScore, computerScore);
-            checkWinner(humanScore, computerScore);
-            break;
-    }
-});
-
-function displayRunningScore(humanScore, computerScore) {
+function displayScore(humanScore, computerScore) {
     divOne.textContent = `You: ${humanScore}`;
     divTwo.textContent = `Computer: ${computerScore}`;
 }
 
-function checkWinner(humanScore, computerScore) {
+const winner = document.querySelector(".winner");
+
+function checkGameOver(humanScore, computerScore) {
     if (humanScore !== 5 && computerScore !== 5) {
         return;
     }
@@ -83,20 +82,22 @@ function checkWinner(humanScore, computerScore) {
     winner.dispatchEvent(event);
 }
 
-// listen for whether there's a winner
+// listen for custom winner event
 winner.addEventListener("winnerfound", gameOver);
+
+const resetButton = document.createElement("button");
+resetButton.textContent = "Play Again";
+
+resetButton.addEventListener("click", resetGame);
 
 function gameOver() {
     winner.append(resetButton);
     resetButton.setAttribute("style", "display: block;");
     
+    // stop game play
     const buttons = document.querySelectorAll(".choice");
     buttons.forEach((button) => button.disabled = true);
 }
-
-const resetButton = document.createElement("button");
-resetButton.textContent = "Play Again";
-resetButton.addEventListener("click", resetGame);
 
 function resetGame() {
     gameResults.textContent = "";
@@ -110,20 +111,3 @@ function resetGame() {
     const buttons = document.querySelectorAll(".choice");
     buttons.forEach((button) => button.disabled = false);
 }
-
-// function playGame() {
-//     for (let i = 0; i < 5; i++) {
-//         let humanSelection = getHumanChoice();
-//         let computerSelection = getComputerChoice();
-//         playRound(humanSelection, computerSelection);
-//     }
-
-//     console.log(`Human: ${humanScore}\nComputer: ${computerScore}`)
-    
-//     const result = (humanScore === computerScore) ? 'The game ended in a tie.' :
-//         (humanScore > computerScore) ? 'Winner: You' : 
-//         'Winner: Computer';
-
-//     console.log(result);
-//     alert(result);
-// }
